@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+ <head>
+<meta charset="ISO-8859-1">
+</head>
+<body>
+
+<div th:fragment="tab_panel(nrviti)">
+
+          
+                      <a  class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/planpermbajtja/new/'+ ${planimesimor.id}} +'/' +${nrviti} ">Shto rresht</a>
+	          <div class="row"> 
+	          
+	          
+	          </div>
+                       <div class="table-responsive fixed-table-body">	
+                       
+    
+
+
+ 	
+<table class="table table-striped jambo_table table-responsive-xl" id="example">
+
+  <thead class="thead-blue">
+
+    <tr class="headings">
+
+      <th>#</th>
+
+      <th>Renditja</th>
+
+      <th>Emertimi i lendes</th>
+
+      <th >Titullari i lendes</th>
+      <th> Tipi i veprimtarise</th>
+      <th>Krdeite</th>
+      <th>Nr jave 1</th>
+      <th>Leksione 1</th>
+      <th>Seminare 1</th>
+      <th>Laboratore 1</th>
+      <th>Praktika 1</th>
+      
+        <th>Nr jave 2</th>
+      <th>Leksione 2</th>
+      <th>Seminare 2</th>
+      <th>Laboratore 2</th>
+      <th>Praktika 2</th>
+      
+        <th>Tot Leksione</th>
+     
+      <th>Tot Seminare</th>
+      <th>Tot Laboratore</th>
+      <th>Tot Praktika</th>
+      <th>Semestri 1</th>
+      <th>Semestri 2</th>
+      <th>Veprimet</th>
+      
+  
+
+    </tr >
+
+  </thead>
+
+  <tbody>
+
+    <tr th:each="plan : ${planPermbajtja}" th:if="${plan.viti == nrviti}">
+    
+						<td class="hideable-column" style="font-size: 18px;" th:text="${plan.id}"></td>
+						
+							<td th:text="${plan.renditja}" th:pid="${plan.renditja}"></td>
+								<td  th:text="${plan.emertimi_lendes}"  ></td >
+									<td th:text="${plan.titullari}"></td>
+										<td th:text="${plan.tipi_veprimtarise}"></td>
+										
+	<td th:text="${plan.kredite}" class="kredit"></td>
+	
+		<td th:text="${plan.jave_sem1}"></td>
+			<td th:text="${plan.leksione_sem1}"></td>
+				<td th:text="${plan.seminare_sem1}"></td>
+					<td th:text="${plan.laboratore_sem1}"></td>
+						<td th:text="${plan.praktika_sem1}"></td>
+			<td th:text="${plan.jave_sem2}"></td>
+			<td th:text="${plan.leksione_sem2}"></td>
+				<td th:text="${plan.seminare_sem2}"></td>
+					<td th:text="${plan.laboratore_sem2}"></td>
+						<td th:text="${plan.praktika_sem2}"></td>
+							<td th:text="${plan.TotLeksione}"></td>	
+							<td th:text="${plan.TotSeminare}"></td>
+							<td th:text="${plan.TotLaboratore}"></td>
+							<td th:text="${plan.TotPraktika}"></td>
+							<td th:text="${plan.sem1}"></td>
+							<td th:text="${plan.sem2}"></td>
+							<td> 
+					
+						 <a class="fa fa-trash fa-2x icon-red link-delete" th:href="@{'/planpermbajtja/delete/' + ${plan.id}}"
+						 th:progID="${plan.id}"></a>
+					
+						<a class="fa fa-edit fa-2x icon-blue" th:href="@{'/planpermbajtja/edit/' + ${plan.id}}" ></a>
+					
+						
+						</td>
+										
+    </tr>
+    
+  
+   
+    
+    
+    
+     <tr th:if="${transform.get(nrviti) != null}">
+        <td colspan="3" > Totali i krediteve</td>
+       <td th:style= "${transform.get(nrviti).kredite  &gt; 15} ? 'color:red'">
+       
+      <b  th:text="${transform.get(nrviti).kredite}"> </b>
+     
+    
+ 
+    
+       
+       
+       
+     
+       </td>
+       
+        <td colspan="2" > Ngarkesa sem 1</td>
+       <td th:style= "${transform.get(nrviti).TotSem1Rresht  &gt; 15} ? 'background:red'">
+       
+      <b  th:text="${transform.get(nrviti).TotSem1Rresht}"> </b>
+     
+    
+ 
+    
+       
+       
+       
+     
+       </td>
+       
+       <td colspan="2" > Ngarkesa sem 2</td>
+       <td th:style= "${transform.get(nrviti).TotSem2Rresht  &gt; 15} ? 'background:red'">
+       
+      <b  th:text="${transform.get(nrviti).TotSem2Rresht}"> </b>
+     
+    
+ 
+    
+       
+       
+       
+     
+       </td>
+       
+       
+    </tr>
+ 
+    
+   
+ 
+
+  </tbody>
+
+</table>
+
+</div>
+  <div class="row"> 
+	          
+	          
+	          </div>
+
+   <a  class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/planpermbajtja/new/'+ ${planimesimor.id}} +'/' +${nrviti} ">Shto rresht</a>
+	          <div class="row"> 
+	          
+	          
+	          </div>
+                       <div class="table-responsive fixed-table-body">	
+                       
+    
+
+
+ 	
+<table class="table table-striped jambo_table table-responsive-xl" id="example">
+
+  <thead class="thead-blue">
+
+    <tr class="headings">
+
+      <th>#</th>
+
+      <th>Lenda Nene</th>
+
+      <th>Emertimi i lendes</th>
+
+      <th>Veprimet</th>
+      
+  
+
+    </tr >
+
+  </thead>
+
+  <tbody>
+
+    <tr th:each="plan : ${planPermbajtja}" th:if="${plan.viti == nrviti}">
+    
+						<td class="hideable-column" style="font-size: 18px;" th:text="${plan.id}"></td>
+						
+							<td th:text="${plan.renditja}" th:pid="${plan.renditja}"></td>
+								<td  th:text="${plan.emertimi_lendes}"  ></td >
+	
+							<td> 
+					
+						 <a class="fa fa-trash fa-2x icon-red link-delete" th:href="@{'/planpermbajtja/delete/' + ${plan.id}}"
+						 th:progID="${plan.id}"></a>
+					
+						<a class="fa fa-edit fa-2x icon-blue" th:href="@{'/planpermbajtja/edit/' + ${plan.id}}" ></a>
+					
+						
+						</td>
+										
+    </tr>
+    
+  </tbody>
+
+</table>
+
+
+
+
+
+                      
+                      </div>
+
+</body>
+</html>
