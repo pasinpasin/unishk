@@ -145,6 +145,16 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", enabled=" + enabled + ", fakulteti=" + fakulteti + ", departamenti="
+				+ departamenti + ", roles=" + roles + "]";
+	}
+	
 	
 	
 	

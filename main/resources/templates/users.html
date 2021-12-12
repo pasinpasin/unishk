@@ -252,9 +252,10 @@
 						
 						<th>Roles</th>
 						
-						<th>Enabled</th>
+						
 						<th>Fakulteti</th>
 						<th>Departamenti</th>
+						<th>Enabled</th>
 						<th>Actions</th>
 						
 						
@@ -264,19 +265,18 @@
 					<tr th:each="user : ${listUsers}">
 						<td class="hideable-column" th:text="${user.id}"></td>
 					
-						<td class="hideable-column" th:text="${user.email}"></td>
-						<td th:text="${user.firstName}"></td>
-						<td th:text="${user.lastName}"></td>
-						<td th:text="${user.roles}"></td>
-						<td th:text="${user.fakulteti}"></td>
-						<td th:text="${user.departamenti}"></td>
+					<td class="hideable-column">[[${user.email}]]</td>
+						<td>[[${user.firstName}]]</td>
+						<td>[[${user.lastName}]]</td>
+					<td>[[${user.roles.name}]]</td>
+						<td>[[${user.fakulteti.emertimi}]]</td>
+						<td>[[${user.departamenti.emertimi}]]</td>
 						<td th:text="${user.enabled}"></td>
 						
 					<td> 
 					
 						 <a class="fa fa-trash fa-2x icon-red link-delete" th:href="@{'/users/delete/' + ${user.id}}"
 						 th:progID="${user.id}"></a>
-						
 						<a class="fa fa-edit fa-2x icon-blue" th:href="@{'/users/edit/' + ${user.id}}" ></a>
 					
 						

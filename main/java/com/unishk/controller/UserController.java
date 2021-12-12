@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.unishk.entity.Fakulteti;
 import com.unishk.entity.Role;
 import com.unishk.entity.User;
 import com.unishk.exception.UserNotFoundException;
+import com.unishk.service.FakultetiService;
 import com.unishk.service.UserService;
 
 
@@ -27,6 +29,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired FakultetiService fakultetiService;
 	
 	
 	@GetMapping("/users")
@@ -84,10 +88,13 @@ public class UserController {
 	
 	{
 		User user = new User();
+		List<Fakulteti> fakultetet = fakultetiService.listFakultete();
+		
 		model.addAttribute("user", user);
 		List<Role> listRoles = userService.ListRole();
 		
 		model.addAttribute("listRoles", listRoles);
+		model.addAttribute("fakultetet", fakultetet);
 		model.addAttribute("pageTitle", "New user page");
 		return "userform";
 	}
@@ -110,8 +117,10 @@ public class UserController {
 	{
 		try {
 			User user= userService.get(id);
+			List<Fakulteti> fakultetet = fakultetiService.listFakultete();
 			model.addAttribute("user", user);
 			model.addAttribute("pageTitle", "Edit user page wth id" + " " + id);
+			model.addAttribute("fakultetet", fakultetet);
 			List<Role> listRoles = userService.ListRole();
 			model.addAttribute("listRoles", listRoles);
 			return "userform";
