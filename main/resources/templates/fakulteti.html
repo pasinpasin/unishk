@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -283,7 +284,7 @@
 					<td> 
 					<a class="fa fa-eye fa-2x icon-green" th:href="@{'/departamenti/' + ${dep.id}}"></a>
 						&nbsp;
-						<a class="fa fa-trash fa-2x icon-red link-delete" th:href="@{'/departamenti/delete/' + ${dep.id}}"
+						<a  sec:authorize="hasAuthority('admin_role')" class="fa fa-trash fa-2x icon-red link-delete" th:href="@{'/departamenti/delete/' + ${dep.id}}"
 						 th:depID="${dep.id}"></a>
 						&nbsp;
 						<a class="fa fa-edit fa-2x icon-blue" th:href="@{'/departamenti/edit/' + ${dep.id}}" ></a>

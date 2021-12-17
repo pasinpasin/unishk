@@ -34,18 +34,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 	
 		http.authorizeRequests()
-        .antMatchers("/**")
-        .access("hasIpAddress('127.0.0.1') or hasIpAddress('::1') or isAuthenticated()")  // 127.0.0.1 and localhost do not need to authenticate on any url
-        .anyRequest().authenticated()
-        .and()
-        .formLogin()
-        .permitAll();
+		//.antMatchers("/**").hasIpAddress("127.0.0.1")
+		.anyRequest().authenticated()
+		.and()
+		.formLogin()
+		.loginPage("/login")
+		.usernameParameter("email")
+		.permitAll()
+		.and()
+		.logout().permitAll()
+		;
 	}
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		
-		web.ignoring().antMatchers("/images/**","/js/**","/webjars/**");
+		web.ignoring().antMatchers("/images/**","/js/**","/webjars/**","/build/**","/vendors/**","/src/**")
+		
+		;
 	
 	}
 	

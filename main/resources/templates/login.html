@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Login</title>
+
+    <!-- Bootstrap -->
+  <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}"  />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/font-awesome/css/font-awesome.min.css}"  />
+    <!-- NProgress -->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/nprogress/nprogress.css}"  />
+    <!-- Animate.css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/animate.css/animate.min.css}"  />
+
+    <!-- Custom Theme Style -->
+    <link rel="stylesheet" type="text/css" th:href="@{/build/css/custom.min.css}"  />
+  </head>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+      <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto">
+		
+			<div th:if="${param.error}">
+				<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+			</div>
+			
+			<div th:if="${param.logout}">
+				<p class="text-warning">You have been logged out.</p>
+			</div>
+		
+		
+			<div class="border border-secondary rounded p-3">
+				<p>Access</p>
+				 <div>
+					<input type="email" name="email" class="form-control" placeholder="E-mail" required />
+				 </div>
+				 <div>
+					<input type="password" name="password" class="form-control" placeholder="Password" required />
+				 </div>
+				<p>
+					<input type="checkbox" name="remember-me" />&nbsp;Me kujto heren tjeter
+				</p>
+				<p>
+					<input type="submit" value="Login" class="btn btn-primary" />
+				</p>			
+			</div>
+		</form>
+          </section>
+        </div>
+
+   
+      </div>
+    </div>
+  </body>
+</html>

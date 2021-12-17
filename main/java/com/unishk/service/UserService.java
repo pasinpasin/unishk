@@ -110,6 +110,10 @@ public void delete(Integer id) throws UserNotFoundException {
 	
 	userRepo.deleteById(id);
 }
+
+public User getByEmail(String email) {
+	return userRepo.getUserByEmail(email);
+}
 	
 
 }

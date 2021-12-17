@@ -8,22 +8,22 @@
 <div th:fragment="tab_panel(nrviti)">
 
           
-                      <a  class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/planpermbajtja/new/'+ ${planimesimor.id}} +'/' +${nrviti} ">Shto rresht</a>
+                      <a sec:authorize="hasAnyAuthority('admin_role','pergjdep_role')" class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/planpermbajtja/new/'+ ${planimesimor.id}} +'/' +${nrviti} ">Shto rresht</a>
 	          <div class="row"> 
 	          
 	          
 	          </div>
-                       <div class="table-responsive fixed-table-body">	
+                      <div class="table-responsive">
                        
     
 
 
  	
-<table class="table table-striped jambo_table table-responsive-xl" id="example">
+<table class="table table-responsive table-striped jambo_table " id="example" >
 
   <thead class="thead-blue">
 
-    <tr class="headings">
+    <tr class="heading">
 
       <th>#</th>
 
@@ -63,7 +63,7 @@
 
   <tbody>
 
-    <tr th:each="plan : ${planPermbajtja}" th:if="${plan.viti == nrviti}">
+    <tr  th:each="plan : ${planPermbajtja}" th:if="${plan.viti == nrviti}">
     
 						<td class="hideable-column" style="font-size: 18px;" th:text="${plan.id}"></td>
 						
@@ -167,7 +167,7 @@
 	          
 	          </div>
 
-   <a  class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/planpermbajtja/new/'+ ${planimesimor.id}} +'/' +${nrviti} ">Shto rresht</a>
+   <a  class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/planpermbajtja/new/lende/'+ ${planimesimor.id}} +'/' +${nrviti} ">Shto lende</a>
 	          <div class="row"> 
 	          
 	          
@@ -228,6 +228,7 @@
 
 
                       
+                      </div>
                       </div>
 
 </body>

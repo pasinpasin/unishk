@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -48,6 +50,8 @@ public class UserController {
 	      
 	{
 		 System.out.println(pageNum + sortField + sortDir + keyword);
+		
+		 
 		
 		
 		//LOGGER.info("UserController | listByPage is started");

@@ -31,7 +31,7 @@ public class ProgrameStudimi {
 	private Departamenti departamenti;
 	
 	
-	@OneToMany(mappedBy="programi",fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
+	@OneToMany(mappedBy="programi",fetch = FetchType.EAGER,cascade=CascadeType.MERGE)
 	private Set<PlanetMesimore> planetmesimore = new HashSet<>();
  
 

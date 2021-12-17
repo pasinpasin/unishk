@@ -29,7 +29,7 @@ public class Departamenti {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length=200, nullable=false, unique=true)
+	@Column(length=200, nullable=false)
 	private String emertimi;
 	
 	
@@ -42,6 +42,9 @@ public class Departamenti {
 	 
 	 @OneToOne(mappedBy="departamenti")
 	 private User users;
+	 
+	 @OneToMany(mappedBy="departamenti_ngarkesa",fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
+	 private Set<Ngarkesa> ngarkesat = new HashSet<>();
 	 
 
 	public Departamenti(String emertimi, Fakulteti fakulteti) {
@@ -81,6 +84,32 @@ public class Departamenti {
 	
 	
 	
+	
+	
+
+
+	public User getUsers() {
+		return users;
+	}
+
+
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
+
+
+
+	public Set<Ngarkesa> getNgarkesat() {
+		return ngarkesat;
+	}
+
+
+
+	public void setNgarkesat(Set<Ngarkesa> ngarkesat) {
+		this.ngarkesat = ngarkesat;
+	}
+
 
 
 	public void setFakulteti(Fakulteti fakulteti) {

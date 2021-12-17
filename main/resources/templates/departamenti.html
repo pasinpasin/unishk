@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -286,7 +286,7 @@
 		<br></br>
         <a  class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/programi/new/'+ ${depi.id}}">Shto program</a>
        
-         
+       
 <table class="table table-striped jambo_table table-responsive-xl">
 				<thead>
 					<tr  class="headings">
@@ -307,8 +307,14 @@
 						
 					</tr>								
 				</thead>
+				
 				<tbody>
-					<tr th:each="program : ${programet}">
+				
+				
+				
+			  <tr th:each="program: ${programet}">
+					
+					
 						<td class="hideable-column" th:text="${program.id}"></td>
 						
 						
@@ -318,12 +324,12 @@
 						
 						
 					<td> 
-					<a class="fa fa-eye fa-2x icon-green" th:href="@{'/planetmesimore/' + ${program.id}}"></a>
+					<a  class="fa fa-eye fa-2x icon-green" th:href="@{'/planetmesimore/' + ${program.id}}"></a>
 						&nbsp;
 						<!-- <a class="fa fa-trash fa-2x icon-red link-delete" th:href="@{'/programi/delete/' + ${program.id}}"
 						 th:progID="${program.id}"></a>
 						&nbsp; -->
-						<a class="fa fa-edit fa-2x icon-blue" th:href="@{'/programi/edit/' + ${program.id}}" ></a>
+						<a sec:authorize="hasAnyAuthority('admin_role','pergjdep_role')" class="fa fa-edit fa-2x icon-blue" th:href="@{'/programi/edit/' + ${program.id}}" ></a>
 						&nbsp;
 						
 						</td>

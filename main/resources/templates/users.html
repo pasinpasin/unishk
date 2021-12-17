@@ -245,7 +245,7 @@
 						 >First name</a>
 						 
 						 <span th:if="${sortField == 'firstName'}"
-						 th:class="${sortDir == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"> </span>
+						 th:class="${sortDir == 'asc' ? 'fa fa-sort-up' : 'fa fa-sort-down'}"> </span>
 						 
 						 </th>
 					   <th> lastname</th>
@@ -268,7 +268,7 @@
 					<td class="hideable-column">[[${user.email}]]</td>
 						<td>[[${user.firstName}]]</td>
 						<td>[[${user.lastName}]]</td>
-					<td>[[${user.roles.name}]]</td>
+					<td>[[${user.roles}]]</td>
 						<td>[[${user.fakulteti.emertimi}]]</td>
 						<td>[[${user.departamenti.emertimi}]]</td>
 						<td th:text="${user.enabled}"></td>

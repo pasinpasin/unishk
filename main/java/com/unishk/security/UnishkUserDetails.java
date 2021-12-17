@@ -31,7 +31,7 @@ public class UnishkUserDetails implements UserDetails {
 		
 		for (Role role: roles  )
 		 {
-			authorities.add(new SimpleGrantedAuthority(role.getDescription()));
+			authorities.add(new SimpleGrantedAuthority(role.getName()));
 			
 		 }
 		
@@ -89,6 +89,11 @@ public class UnishkUserDetails implements UserDetails {
 		this.user.setLastName(lastName);
 	
 		
+	}
+	
+	public String getDepartament()
+	{
+		return this.user.getDepartamenti().getId().toString();
 	}
 
 }
