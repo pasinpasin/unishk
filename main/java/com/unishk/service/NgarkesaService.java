@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.unishk.entity.Ngarkesa;
-
+import com.unishk.entity.NgarkesePermbajtja;
 import com.unishk.repository.NgarkesaRepository;
+import com.unishk.repository.NgarkesePermbajtjaRepository;
 
 
 @Service
@@ -17,6 +18,8 @@ import com.unishk.repository.NgarkesaRepository;
 public class NgarkesaService {
 	
 	@Autowired private NgarkesaRepository repo;
+	
+	@Autowired private NgarkesePermbajtjaRepository repo2;
 	
 	
 	
@@ -47,6 +50,12 @@ public class NgarkesaService {
 		 
 		 return (List<Ngarkesa>) repo.findAll();
 		 
+	 }
+	 
+	 public List<NgarkesePermbajtja> ListPermbajtje(int id)
+	 {
+		 
+		 return  (List<NgarkesePermbajtja>) repo2.findNgarkesePermbajtjaById(id);
 	 }
 	 
 	

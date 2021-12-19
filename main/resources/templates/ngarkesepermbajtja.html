@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -218,7 +218,7 @@
 	
 	
 		<br></br>
-        <a  class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/users/new/'}">Shto user</a>
+        <a  class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/ngarkesa/new/'}">Shto user</a>
        
          
 <table class="table table-striped jambo_table table-responsive-xl">
@@ -231,47 +231,35 @@
 						
 					
 						
-						<th class="hideable-column">
-						Email
+						<th >
+						Emri
 						</th>
 	
-						<th>
+					
+					   <th> Mbiemri</th>
 						
-						 <a th:if="${sortField != 'firstName'}"
-						 th:href="@{'/users/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"
-						 >First name</a>
-						  <a th:if="${sortField == 'firstName'}"
-						 th:href="@{'/users/page/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}"
-						 >First name</a>
-						 
-						 <span th:if="${sortField == 'firstName'}"
-						 th:class="${sortDir == 'asc' ? 'fa fa-sort-up' : 'fa fa-sort-down'}"> </span>
-						 
-						 </th>
-					   <th> lastname</th>
 						
-						<th>Roles</th>
 						
 						
 						<th>Fakulteti</th>
 						<th>Departamenti</th>
-						<th>Enabled</th>
+						<th>Viti akademik</th>
 						<th>Actions</th>
 						
 						
 					</tr>								
 				</thead>
 				<tbody>
-					<tr th:each="user : ${listUsers}">
-						<td class="hideable-column" th:text="${user.id}"></td>
+					<tr th:each="ngarkese : ${ngarkesat}">
+						<td class="hideable-column" th:text="${ngarkese.id}"></td>
 					
-					<td class="hideable-column">[[${user.email}]]</td>
-						<td>[[${user.firstName}]]</td>
-						<td>[[${user.lastName}]]</td>
-					<td>[[${user.roles}]]</td>
-						<td>[[${user.fakulteti.emertimi}]]</td>
-						<td>[[${user.departamenti.emertimi}]]</td>
-						<td th:text="${user.enabled}"></td>
+					
+						<td>[[${ngarkese.user.firstName}]]</td>
+						<td>[[${ngarkese.user.lastName}]]</td>
+					
+						<td>[[${ngarkese.departamenti_ngarkesa.id.fakulteti.emertimi}]]</td>
+						<td>[[${ngarkese.departamenti_ngarkesa.id.emertimi}]]</td>
+						<td th:text="${vitiakademik}"></td>
 						
 					<td> 
 					
@@ -286,42 +274,6 @@
 					</tr>
 				</tbody>
 			</table>
-			
-		<div class="text-center m-1" th:if="${totalItems > 0}">
-		<span>Showing [[${entityName}]] # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
-	</div>
-	<div class="text-center m-1" th:unless="${totalItems > 0}">
-		<span>No [[${entityName}]] found</span>
-	</div>
-	
-	<div th:if="${totalPages > 1}">
-		<nav>
-		  <ul class="pagination justify-content-center flex-wrap">
-		    <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-		    	<a th:replace="fragments :: page_link(1, 'First')"></a>
-		    </li>		  
-		    <li th:class="${currentPage > 1 ? 'page-item' : 'page-item disabled'}">
-		    	<a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous')"></a>
-		    </li>
-		    
-		    <li th:class="${currentPage != i ? 'page-item': 'page-item active'}" 
-		    	th:each="i : ${#numbers.sequence(1, totalPages)}">
-		    	<a th:replace="fragments :: page_link(${i}, ${i})"></a>
-		    </li>
-		    
-		    <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-		    	<a th:replace="fragments :: page_link(${currentPage + 1}, 'Next')"></a>
-		    </li>
-		    
-		    <li th:class="${currentPage < totalPages ? 'page-item' : 'page-item disabled'}">
-		    	<a th:replace="fragments :: page_link(${totalPages}, 'Last')"></a>
-		    </li>		    
-		  </ul>
-		</nav>	
-	</div>		
-
-			
-			
         
         	<div  class="modal fade text-center" id="confirmModal">
 		<div class="modal-dialog">
