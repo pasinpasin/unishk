@@ -93,7 +93,16 @@ public class UnishkUserDetails implements UserDetails {
 	
 	public String getDepartament()
 	{
-		return this.user.getDepartamenti().getId().toString();
+		return this.user.getDepartamenti().getEmertimi();
+	}
+	public String getFakultet()
+	{
+		return this.user.getFakulteti().getId().toString();
+	}
+	
+	public Integer getUserId()
+	{
+		return this.user.getId();
 	}
 
 }

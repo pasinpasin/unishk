@@ -9,7 +9,7 @@ import com.unishk.entity.NgarkesePermbajtja;
 
 public interface NgarkesePermbajtjaRepository extends CrudRepository<NgarkesePermbajtja, Integer> {
 	
-	@Query("SELECT n FROM Ngarkesepermbajtja n WHERE n.ngarkese_id = :id")
+	@Query("SELECT n FROM NgarkesePermbajtja n WHERE n.ngarkese = :id")
     public NgarkesePermbajtja findNgarkesePermbajtjaById(@Param("id") Integer id);
 
 

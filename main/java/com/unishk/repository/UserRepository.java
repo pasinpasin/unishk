@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.unishk.entity.Departamenti;
 import com.unishk.entity.User;
 
 public interface UserRepository extends PagingAndSortingRepository<User, Integer> {
@@ -28,5 +29,9 @@ public interface UserRepository extends PagingAndSortingRepository<User, Integer
 	
 	@Query("select  u from User u where concat(u.firstName, ' ', u.lastName, ' ', u.email) like %?1%")
 	public Page<User> findAll(String keyword, Pageable pageable);
+	
+	
+	@Query("select u from User u where u.departamenti = :depi ")
+	public List<User> getPedagogByDep(@Param("depi") Departamenti depi);
 
 }

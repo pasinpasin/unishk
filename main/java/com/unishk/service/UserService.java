@@ -13,7 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
+import com.unishk.entity.Departamenti;
 import com.unishk.entity.Role;
 import com.unishk.entity.User;
 import com.unishk.exception.UserNotFoundException;
@@ -24,7 +24,7 @@ import com.unishk.repository.UserRepository;
 @Transactional
 public class UserService {
 	
-	public static final int USERS_PER_PAGE = 4;
+	public static final int USERS_PER_PAGE = 10;
 	
 	@Autowired
 	private UserRepository userRepo;
@@ -113,6 +113,12 @@ public void delete(Integer id) throws UserNotFoundException {
 
 public User getByEmail(String email) {
 	return userRepo.getUserByEmail(email);
+}
+
+public List<User> listPedagogByDep(Departamenti depi)
+{
+
+	return (List<User>) userRepo.getPedagogByDep(depi);
 }
 	
 
