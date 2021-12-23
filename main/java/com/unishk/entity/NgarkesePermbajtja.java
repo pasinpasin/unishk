@@ -7,10 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Formula;
 
 @Entity
+@Table(name="ngarkese_permbajtja")
 public class NgarkesePermbajtja {
 	
 	@Id
@@ -53,7 +55,7 @@ public class NgarkesePermbajtja {
 	private String koef="1";
 	
 	@Formula("(select sum( n.leksione  + 0.0  + ((n.seminare + 0.0 )  *  (n.grseminare + 0.0 )) + "
-			+ "((n.laboratore + 0.0 )  *  (n.grlaboratore + 0.0 )) + ((n.praktika + 0.0 )  *  (n.koef + 0.0 ))) from ngarkesepermbajtja n where n.id=id)")
+			+ "((n.laboratore + 0.0 )  *  (n.grlaboratore + 0.0 )) + ((n.praktika + 0.0 )  *  (n.koef + 0.0 ))) from ngarkese_permbajtja n where n.id=id)")
 	private Double shuma;
 
 	public Integer getId() {

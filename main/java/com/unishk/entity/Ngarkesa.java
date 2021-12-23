@@ -36,6 +36,10 @@ public class Ngarkesa {
 	private User user;
 	
 	@ManyToOne
+    @JoinColumn(name = "fakulteti_id", nullable=false)
+	private Fakulteti fakulteti_ngarkesa;
+	
+	@ManyToOne
     @JoinColumn(name = "departamenti_id", nullable=false)
 	private Departamenti departamenti_ngarkesa;
 	
@@ -48,6 +52,9 @@ public class Ngarkesa {
 	
 	@Column(name="normamesimore", nullable=false,length=10)
 	private String normamesimore;
+	
+	@Column(length=50, nullable=false)
+	 private String status="Krijuar";
 	
 	
 
@@ -86,6 +93,16 @@ public class Ngarkesa {
 	public void setDepartamenti_ngarkesa(Departamenti departamenti_ngarkesa) {
 		this.departamenti_ngarkesa = departamenti_ngarkesa;
 	}
+	
+	
+
+	public Fakulteti getFakulteti_ngarkesa() {
+		return fakulteti_ngarkesa;
+	}
+
+	public void setFakulteti_ngarkesa(Fakulteti fakulteti_ngarkesa) {
+		this.fakulteti_ngarkesa = fakulteti_ngarkesa;
+	}
 
 	public String getVitiakademik() {
 		return vitiakademik;
@@ -110,6 +127,15 @@ public class Ngarkesa {
 	public void setNgarkesePermbajtja(Set<NgarkesePermbajtja> ngarkesePermbajtja) {
 		this.ngarkesePermbajtja = ngarkesePermbajtja;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	
 	
 

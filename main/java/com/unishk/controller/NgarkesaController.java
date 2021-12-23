@@ -61,7 +61,7 @@ public class NgarkesaController {
 		List<Ngarkesa> rezultati = new ArrayList<>();
 		
 		if(	user.getRoles().stream()
-			.anyMatch(r -> r.getName().equals("dekan_role")))
+			.anyMatch(r -> r.getName().contains("dekan_role")))
 		{ 
 			for(int i = 0 ; i < arrayList.size() ; i++){
 				 Ngarkesa  ngark = (Ngarkesa) arrayList.get(i);
@@ -81,7 +81,7 @@ public class NgarkesaController {
 		else
 			
 			if(	user.getRoles().stream()
-					.anyMatch(r -> r.getName().equals("pergjdep_role")))
+					.anyMatch(r -> r.getName().contains("pergjdep_role")))
 			{ 
 				for(int i = 0 ; i < arrayList.size() ; i++){
 					 Ngarkesa  ngark = (Ngarkesa) arrayList.get(i);
@@ -102,17 +102,15 @@ public class NgarkesaController {
 			else
 				
 				if(	user.getRoles().stream()
-						.anyMatch(r -> r.getName().equals("user_role")))
+						.anyMatch(r -> r.getName().contains("pedagog_role")))
 				{ 
 					for(int i = 0 ; i < arrayList.size() ; i++){
 						 Ngarkesa  ngark = (Ngarkesa) arrayList.get(i);
 						 
 						 
-						 if (
-								 ngark.getDepartamenti_ngarkesa().getId() == user.getDepartamenti().getId()
-						   &&
-						   ngark.getDepartamenti_ngarkesa().getFakulteti().getId() == user.getFakulteti().getId()
-								 )
+						 if  (user.getId() == ngark.getUser().getId())
+						   
+								
 								 { 
 							 
 								
@@ -123,6 +121,29 @@ public class NgarkesaController {
 					}
 					
 				}
+		
+				else
+					
+					if(	user.getRoles().stream()
+							.anyMatch(r -> r.getName().contains("kurrikula_role")))
+					{ 
+						for(int i = 0 ; i < arrayList.size() ; i++){
+							 Ngarkesa  ngark = (Ngarkesa) arrayList.get(i);
+							 
+							 
+							 if  ( ngark.getStatus()=="Perfunduar")
+							   
+									
+									 { 
+								 
+									
+								 rezultati.add(ngark);
+									 
+								 }
+							 
+						}
+						
+					}
 					
 				
 			

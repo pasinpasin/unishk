@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>Fakulteti| </title>
+    <title>Departamenti </title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}"  />
@@ -30,7 +30,6 @@
 
     <!-- Custom Theme Style -->
     <link rel="stylesheet" type="text/css" th:href="@{/build/css/custom.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}"/>
   </head>
 
   <body class="nav-md">
@@ -69,9 +68,9 @@
                   <li><a><i class="fa fa-graduation-cap"></i> Fakultetet <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     
-                      <li  th:each="listFakultetet : ${listFakultetet}">
+                      <!-- <li  th:each="listFakultetet : ${listFakultetet}">
                       <a th:text="${listFakultetet.emertimi}" th:href= "@{'/fakultetet/' + ${listFakultetet.id}}"></a>
-                      </li>
+                      </li> -->
                       
                     </ul>
                   </li>
@@ -272,187 +271,150 @@
         <!-- page content -->
         <div class="right_col" role="main">
         
-        <div th:if="${message != null}" class="alert alert-success text-center">
-			[[${message}]]
-		</div>
-		<div>
-
-
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb breadcrumb-5 bg-success ">
-
-  </ol>
-</nav>
-</div>
-
-
-  <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Ngarkesat</h2>
-                  
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-
-              
-                 
-                      
-                      <div>
-                      <a  class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/ngarkesepermbajtja/new/'+ ${ngarkese.id}}">Shto rresht</a>
-	          <div class="row"> 
-	          
-	          
-	          </div>
-                       <div class="table-responsive fixed-table-body">	
-                       
-    
-
-
- 	
-<table class="table table-striped jambo_table table-responsive-xl" id="example">
-
-  <thead class="thead-blue">
-
-    <tr class="headings">
-
-      <th>#</th>
-
-      <th>Programi</th>
-
-      <th>Lenda</th>
-
-      <th >Cikli</th>
-      <th>Leksione</th>
-      <th>Seminare</th>
-      <th>Gr Seminare</th>
-      <th>Laboratore</th>
-      <th>Grup Laboratore</th>
-      <th>Praktika</th>
-      <th>Koef Praktike</th>
-      
-        <th>Shuma</th>
-     
-      
-  
-
-    </tr >
-
-  </thead>
-
-  <tbody>
-
-    <tr th:each="permbajtja : ${permbajtja}">
-    
-						<td class="hideable-column" style="font-size: 18px;" th:text="${permbajtja.id}"></td>
-						
-							<td th:text="${permbajtja.programi}"></td>
-								<td  th:text="${permbajtja.lenda}"  ></td >
-									<td th:text="${permbajtja.cikli}"></td>
-										<td th:text="${permbajtja.leksione}"></td>
-										
-	<td th:text="${permbajtja.seminare}" class="kredit"></td>
-	
-		<td th:text="${permbajtja.grseminare}"></td>
-			<td th:text="${permbajtja.laboratore}"></td>
-				<td th:text="${permbajtja.grlaboratore}"></td>
-					<td th:text="${permbajtja.praktika}"></td>
-						<td th:text="${permbajtja.koef}"></td>
-			<td th:text="${permbajtja.shuma}"></td>
-			
-										
-    </tr>
-    
-  
-   
-    
-    
-    
-  <!--    <tr th:if="${transform.get('1') != null}">
-        <td colspan="3" > Totali i krediteve</td>
-       <td th:style= "${transform.get('1').kredite  &gt; 15} ? 'color:red'">
-       
-      <b  th:text="${transform.get('1').kredite}"> </b>
-     
-    
- 
-    
-       
-       
-       
-     
-       </td>
-       
-        <td colspan="2" > Ngarkesa sem 1</td>
-       <td th:style= "${transform.get('1').TotSem1Rresht  &gt; 15} ? 'background:red'">
-       
-      <b  th:text="${transform.get('1').TotSem1Rresht}"> </b>
-     
-    
- 
-    
-       
-       
-       
-     
-       </td>
-       
-   
-       
-       
-    </tr>
- 
-     -->
-   
- 
-
-  </tbody>
-
-</table>
-
-
-
-
-
-
-
-
-</div>
-                      </div>
-                      
-                  
-                  </div>
-                </div>
-              </div>
-
-
-
-		
-
         
-        	<div  class="modal fade text-center" id="confirmModal">
+     	<div class="x_content">
+     	
+									<br />
+									<form id="demo-form2" method="post" th:action="@{/ngarkesepermbajtja/save}" class="form-horizontal form-label-left" th:object="${ngarkesePermbajtja}">
+
+										
+		    	<input type="hidden" th:field="*{id}" />
+		    	
+		    	<input type="hidden" th:field="*{ngarkese.id}" />
+		    	
+		    
+		    	
+
+	<div class="item form-group">
+										<div class="col-md-1 col-sm-1 ">
+										</div>
+										
+										<label for="programi" class="col-form-label col-md-2 col-sm-2 label-align"> programi<span class="required">*</span> </label>
+											<div class="col-md-2 col-sm-2 ">
+								<input class="form-control" required="required" type="text"  
+												th:field="*{programi}" >
+												</div>
+										
+											
+										</div>
+										
+	
+			
+			
+			<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="lenda">lenda <span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="text"  required="required" class="form-control" th:field="*{lenda}">
+											</div>
+										</div>
+										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="cikli">Cikli
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="text"  class="form-control"  th:field="*{cikli}">
+											</div>
+										</div>
+										
+									
+											<label for="middle-name" class="col-form-label col-md-1 col-sm-1 label-align">Leksione <span class="required">*</span></label>
+											<div class="col-md-2 col-sm-2 ">
+												<input class="form-control" required="required" type="text"   th:field="*{leksione}">
+												</div>
+												<label for="seminare" class="col-form-label col-md-2 col-sm-2 label-align">Seminare <span class="required">*</span></label>
+											<div class="col-md-2 col-sm-2 ">
+											<input class="form-control" required="required" type="text"   th:field="*{seminare}">
+											
+											
+										</div>
+											<label for="grseminare" class="col-form-label col-md-2 col-sm-2 label-align">Gr Seminare <span class="required">*</span></label>
+											<div class="col-md-2 col-sm-2 ">
+											<input class="form-control" required="required" type="text"   th:field="*{grseminare}">
+											
+											
+										</div>
+											<label for="laboratore" class="col-form-label col-md-2 col-sm-2 label-align">laboratore <span class="required">*</span></label>
+											<div class="col-md-2 col-sm-2 ">
+											<input class="form-control" required="required" type="text"   th:field="*{laboratore}">
+											
+											
+										</div>
+										
+											<label for="grlaboratore" class="col-form-label col-md-2 col-sm-2 label-align">grlaboratore <span class="required">*</span></label>
+										<div class="col-md-2 col-sm-2 ">
+											<input class="form-control" required="required" type="text"   th:field="*{grlaboratore}">
+											
+											
+										</div>
+										
+										<label for="praktika" class="col-form-label col-md-2 col-sm-2 label-align">praktika <span class="required">*</span></label>
+										<div class="col-md-2 col-sm-2 ">
+											<input class="form-control" required="required" type="text"   th:field="*{praktika}">
+										</div>	
+											<label for="koef" class="col-form-label col-md-2 col-sm-2 label-align">koef <span class="required">*</span></label>
+										<div class="col-md-2 col-sm-2 ">
+											<input class="form-control" required="required" type="text"   th:field="*{koef}">
+											
+											
+										
+											
+											
+										
+										
+										
+										</div>
+										
+									
+
+									
+										
+										
+
+									
+										
+										
+			
+
+
+				
+
+				
+				
+										
+	<div class="text-center">
+					<input type="submit" value="Save" class="btn btn-primary m-3" /> 
+					<input type="button" value="Cancel" class="btn btn-secondary" th:depID="*{ngarkese.id}"
+						id="buttonCancel" />
+				</div>								
+									
+									
+									
+									
+
+									</form>
+									</div>
+								
+
+        </div>
+        
+        		<div th:fragment="modal_dialog" class="modal fade text-center" id="modalDialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-			
-					<h4 class="modal-title">Delete Confirmation</h4>
-					
+					<h4 class="modal-title" id="modalTitle">Warning</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 
 				<div class="modal-body">
-					<h2><span id="confirmText"></span></h2>
+					<span id="modalBody"></span>
 				</div>
 
 				<div class="modal-footer">
-					<a class="btn btn-success" href="" id="yesButton">Yes</a>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
-	</div>	
-
-        </div>
+	</div>
         <!-- /page content -->
 
         <!-- footer content -->
@@ -470,7 +432,6 @@
     <script type="text/javascript" th:src="@{/vendors/jquery/dist/jquery.min.js}" ></script>
     <!-- Bootstrap -->
     <script type="text/javascript" th:src="@{/vendors/bootstrap/dist/js/bootstrap.bundle.min.js}" ></script>
-     
     <!-- FastClick -->
     <script type="text/javascript" th:src="@{/vendors/fastclick/lib/fastclick.js}" ></script>
     <!-- NProgress -->
@@ -504,13 +465,51 @@
     <!-- bootstrap-daterangepicker -->
     <script type="text/javascript" th:src="@{/vendors/moment/min/moment.min.js}" ></script>
     <script type="text/javascript" th:src="@{/vendors/bootstrap-daterangepicker/daterangepicker.js}" ></script>
+    <script type="text/javascript" th:src="@{/build/js/custom.min.js}" ></script>
+    
+  	<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$("#buttonCancel").on("click", function() {
+			//console.log(moduleURL);
+			
+			depID=$("#buttonCancel").attr("depID");
+			
+			
+			window.location =  "[[@{/ngarkesa/edit/}]]" + depID ;
+			
+		
+		});
+		
+		
+
+
+	});
+	
+
+    function isNumberKey(txt, evt) {
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if (charCode == 46) {
+        //Check if the text already contains the . character
+        if (txt.value.indexOf('.') === -1) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (charCode > 31 &&
+          (charCode < 48 || charCode > 57))
+          return false;
+      }
+      return true;
+    }
+ 
+			
+	</script>
 
     <!-- Custom Theme Scripts -->
-
-  <script type="text/javascript">
-
-
-</script>
+    
+ 
 	
   </body>
 </html>

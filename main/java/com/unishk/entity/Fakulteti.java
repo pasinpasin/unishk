@@ -30,6 +30,9 @@ public class Fakulteti {
 	@OneToMany(mappedBy="fakulteti",fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
 	private Set<Departamenti> departamentet = new HashSet<>();
 	
+	 @OneToMany(mappedBy="fakulteti_ngarkesa",fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
+	 private Set<Ngarkesa> ngarkesat = new HashSet<>();
+	
 	@OneToOne(mappedBy="fakulteti")
 	private User users;
 	
@@ -104,6 +107,23 @@ public class Fakulteti {
 	public void setUsers(User users) {
 		this.users = users;
 	}
+
+
+
+
+
+	public Set<Ngarkesa> getNgarkesat() {
+		return ngarkesat;
+	}
+
+
+
+
+
+	public void setNgarkesat(Set<Ngarkesa> ngarkesat) {
+		this.ngarkesat = ngarkesat;
+	}
+	
 	
 	
 	
