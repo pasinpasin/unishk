@@ -245,6 +245,7 @@
 						<th>Departamenti</th>
 						<th>Viti akademik</th>
 						<th>Gjendja</th>
+						<th>Tot auditor</th>
 						<th sec:authorize="hasAnyAuthority('admin_role','pergjdep_role')">Actions</th>
 						
 						
@@ -263,6 +264,7 @@
 						<td>[[${ngarkese.vitiakademik}]]</td>
 						
 						<td>[[${ngarkese.status}]]</td>
+						<td>[[${ngarkese.totAuditor}]]</td>
 						
 					<td sec:authorize="hasAnyAuthority('admin_role','pergjdep_role')"> 
 					

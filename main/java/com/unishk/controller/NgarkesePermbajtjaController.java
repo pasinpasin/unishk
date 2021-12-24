@@ -62,7 +62,7 @@ public class NgarkesePermbajtjaController {
 		
 		model.addAttribute("user", user);
 		
-		return "ngarkesepermbajtja";	
+		return "ngarkesepermbajtja2";	
 	}
 	
 	   @GetMapping("/ngarkesepermbajtja/new/{id}")

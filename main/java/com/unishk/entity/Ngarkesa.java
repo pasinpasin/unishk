@@ -17,9 +17,11 @@ import javax.persistence.JoinColumn;
 
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.OrderBy;
 
 @Table(name="ngarkesa", uniqueConstraints=@UniqueConstraint(columnNames={"vitiakademik", "user_id", "departamenti_id"}))
@@ -56,6 +58,13 @@ public class Ngarkesa {
 	@Column(length=50, nullable=false)
 	 private String status="Krijuar";
 	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "jashteauditor_id", referencedColumnName = "id")
+    private NgarkeseJashteAuditor ngarkesejashteauditor;
+	
+	
+	 @Formula("(select sum( np.leksione  + 0.0  + ((np.seminare + 0.0 )  *  (np.grseminare + 0.0 )) + ((np.laboratore + 0.0 )  *  (np.grlaboratore + 0.0 )) + ((np.praktika + 0.0 )  *  (np.koef + 0.0 ))) from ngarkese_permbajtja  np where np.ngarkese_id= id)")
+		private Double totAuditor;
 	
 
 	public Ngarkesa(User user, Departamenti departamenti_ngarkesa, String vitiakademik) {
@@ -95,6 +104,8 @@ public class Ngarkesa {
 	}
 	
 	
+	
+	
 
 	public Fakulteti getFakulteti_ngarkesa() {
 		return fakulteti_ngarkesa;
@@ -127,6 +138,16 @@ public class Ngarkesa {
 	public void setNgarkesePermbajtja(Set<NgarkesePermbajtja> ngarkesePermbajtja) {
 		this.ngarkesePermbajtja = ngarkesePermbajtja;
 	}
+	
+	
+
+	public NgarkeseJashteAuditor getNgarkesejashteauditor() {
+		return ngarkesejashteauditor;
+	}
+
+	public void setNgarkesejashteauditor(NgarkeseJashteAuditor ngarkesejashteauditor) {
+		this.ngarkesejashteauditor = ngarkesejashteauditor;
+	}
 
 	public String getStatus() {
 		return status;
@@ -135,6 +156,21 @@ public class Ngarkesa {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public Double getTotAuditor() {
+		return totAuditor;
+	}
+
+	public void setTotAuditor(Double totAuditor) {
+		this.totAuditor = totAuditor;
+	}
+	
+	
+	
+	
+	 
+	
+	
 	
 	
 	
