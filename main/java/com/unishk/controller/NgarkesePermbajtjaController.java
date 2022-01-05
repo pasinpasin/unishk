@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.unishk.entity.Ngarkesa;
+import com.unishk.entity.NgarkeseJashteAuditor;
 import com.unishk.entity.NgarkesePermbajtja;
 import com.unishk.entity.PlanPermbajtja;
 import com.unishk.entity.PlanetMesimore;
@@ -41,27 +42,38 @@ public class NgarkesePermbajtjaController {
 		
 		
 	
-		Ngarkesa ngarkese= ngarkesaService.GetById(id);
+		
 	
 		
 		String email=userDetails.getUsername();
 		User user =service.getByEmail(email);
+		Ngarkesa ngarkese= NgarkesaDTO(ngarkesaService.GetById(id),user);
+		if (ngarkese !=null)
+		{
 		List<NgarkesePermbajtja> permbajtja= new ArrayList<>(ngarkese.getNgarkesePermbajtja());
+		NgarkeseJashteAuditor  permbajtja2= ngarkese.getNgarkesejashteauditor();
+		
+		Double totAuditor = (ngarkese.getTotAuditor() == null ? 0.0: ngarkese.getTotAuditor());
+		Double totJashteAuditor=ngarkese.getNgarkesejashteauditor() == null ? 0.0 : ngarkese.getNgarkesejashteauditor().getShuma() ;
 		
 		
 		
 		
 						model.addAttribute("ngarkese", ngarkese);
 						model.addAttribute("permbajtja", permbajtja);
+						model.addAttribute("permbajtja2", permbajtja2);
+						model.addAttribute("totAuditor", totAuditor);
+						model.addAttribute("totJashteAuditor", totJashteAuditor);
+						model.addAttribute("user", user);
 						
-					
+						
+		}		
 				
 		
 	
 		
 		
-		model.addAttribute("user", user);
-		
+	
 		return "ngarkesepermbajtja2";	
 	}
 	
@@ -136,6 +148,104 @@ public class NgarkesePermbajtjaController {
 				
 			
 				return "redirect:/ngarkesepermbajtja/" + myid;
+			
+			
+		}
+		
+		private Ngarkesa NgarkesaDTO(Ngarkesa ngarkese, User user) {
+			
+			//List<Ngarkesa> rezultati = new ArrayList<>();
+			
+			if(	user.getRoles().stream()
+				.anyMatch(r -> r.getName().contains("dekan_role")))
+			{ 
+				
+					 
+					 
+					 if (ngarkese.getDepartamenti_ngarkesa().getFakulteti().getId() == user.getFakulteti().getId() )
+							 { 
+						 
+							
+						 return ngarkese;
+							 
+						 }
+					 
+				
+				
+			}
+			else
+				
+				if(	user.getRoles().stream()
+						.anyMatch(r -> r.getName().contains("pergjdep_role")))
+				{ 
+					
+						 
+						 
+						 if (ngarkese.getDepartamenti_ngarkesa().getId() == user.getDepartamenti().getId())
+								 { 
+							 
+								
+							 return ngarkese;
+								 
+							 }
+						 
+					
+					
+				}
+			
+				else
+					
+					if(	user.getRoles().stream()
+							.anyMatch(r -> r.getName().contains("pedagog_role")))
+					{ 
+						
+							 
+							 
+							 if  (user.getId() == ngarkese.getUser().getId())
+							   
+									
+									 { 
+								 
+									
+								return ngarkese;
+									 
+								 }
+							 
+					
+						
+					}
+			
+					else
+						
+						if(	user.getRoles().stream()
+								.anyMatch(r -> r.getName().contains("kurrikula_role")))
+						{ 
+							
+								 
+								 
+								 if  ( ngarkese.getStatus().equalsIgnoreCase("Perfunduar"))
+								   
+										
+										 { 
+									 
+										
+									 return ngarkese;
+										 
+									 }
+								 
+							
+							
+						}
+						
+					
+				
+				
+				
+			
+				
+				
+				
+			return null;
 			
 			
 		}

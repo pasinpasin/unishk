@@ -1,6 +1,7 @@
 package com.unishk.entity;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -174,6 +175,21 @@ public class User {
 		return "User [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", enabled=" + enabled + ", fakulteti=" + fakulteti + ", departamenti="
 				+ departamenti + ", roles=" + roles + ", ngarkesat=" + ngarkesat + "]";
+	}
+	
+	public boolean hasRole(String rolename)
+	{
+		Iterator<Role> iterator= roles.iterator(); 
+		while (iterator.hasNext())
+		{
+			Role role=iterator.next();
+			if (role.getName().equals(rolename))
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 

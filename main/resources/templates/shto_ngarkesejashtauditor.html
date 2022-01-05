@@ -1,5 +1,5 @@
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>Fakulteti| </title>
+    <title>Departamenti </title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}"  />
@@ -24,13 +24,12 @@
     <!-- bootstrap-progressbar -->
     <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css}" />
     <!-- JQVMap -->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendors/jqvmap/dist/jqvmap.min.css}" >
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/jqvmap/dist/jqvmap.min.css}" />
     <!-- bootstrap-daterangepicker -->
     <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap-daterangepicker/daterangepicker.css}"/>
 
     <!-- Custom Theme Style -->
     <link rel="stylesheet" type="text/css" th:href="@{/build/css/custom.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}"/>
   </head>
 
   <body class="nav-md">
@@ -69,19 +68,90 @@
                   <li><a><i class="fa fa-graduation-cap"></i> Fakultetet <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                     
-                      <li  th:each="listFakultetet : ${listFakultetet}">
+                      <!-- <li  th:each="listFakultetet : ${listFakultetet}">
                       <a th:text="${listFakultetet.emertimi}" th:href= "@{'/fakultetet/' + ${listFakultetet.id}}"></a>
-                      </li>
+                      </li> -->
                       
                     </ul>
                   </li>
-              
-                 
-                
-             
+                  <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="general_elements.html">General Elements</a></li>
+                      <li><a href="media_gallery.html">Media Gallery</a></li>
+                      <li><a href="typography.html">Typography</a></li>
+                      <li><a href="icons.html">Icons</a></li>
+                      <li><a href="glyphicons.html">Glyphicons</a></li>
+                      <li><a href="widgets.html">Widgets</a></li>
+                      <li><a href="invoice.html">Invoice</a></li>
+                      <li><a href="inbox.html">Inbox</a></li>
+                      <li><a href="calendar.html">Calendar</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="tables.html">Tables</a></li>
+                      <li><a href="tables_dynamic.html">Table Dynamic</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="chartjs.html">Chart JS</a></li>
+                      <li><a href="chartjs2.html">Chart JS2</a></li>
+                      <li><a href="morisjs.html">Moris JS</a></li>
+                      <li><a href="echarts.html">ECharts</a></li>
+                      <li><a href="other_charts.html">Other Charts</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
+                      <li><a href="fixed_footer.html">Fixed Footer</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
-            
+              <div class="menu_section">
+                <h3>Live On</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="e_commerce.html">E-commerce</a></li>
+                      <li><a href="projects.html">Projects</a></li>
+                      <li><a href="project_detail.html">Project Detail</a></li>
+                      <li><a href="contacts.html">Contacts</a></li>
+                      <li><a href="profile.html">Profile</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="page_403.html">403 Error</a></li>
+                      <li><a href="page_404.html">404 Error</a></li>
+                      <li><a href="page_500.html">500 Error</a></li>
+                      <li><a href="plain_page.html">Plain Page</a></li>
+                      <li><a href="login.html">Login Page</a></li>
+                      <li><a href="pricing_tables.html">Pricing Tables</a></li>
+                    </ul>
+                  </li>
+                  <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="#level1_1">Level One</a>
+                        <li><a>Level One<span class="fa fa-chevron-down"></span></a>
+                          <ul class="nav child_menu">
+                            <li class="sub_menu"><a href="level2.html">Level Two</a>
+                            </li>
+                            <li><a href="#level2_1">Level Two</a>
+                            </li>
+                            <li><a href="#level2_2">Level Two</a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><a href="#level1_2">Level One</a>
+                        </li>
+                    </ul>
+                  </li>                  
+                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+                </ul>
+              </div>
 
             </div>
             <!-- /sidebar menu -->
@@ -201,108 +271,137 @@
         <!-- page content -->
         <div class="right_col" role="main">
         
-        <div th:if="${message != null}" class="alert alert-success text-center">
-			[[${message}]]
-		</div>
-		<div>
-
-
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb breadcrumb-5 bg-success ">
-    <li class="breadcrumb-item"><a class="text-white" th:href="@{'/'}">Home</a ></li>
-   
-    
-  </ol>
-</nav>
-</div>
-	
-	
-		<br></br>
-        <a sec:authorize="hasAnyAuthority('admin_role','pergjdep_role')" class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/ngarkesa/new/'}">Shto ngarkese</a>
-       
-         
-<table class="table table-striped jambo_table table-responsive-xl">
-				<thead class="thead-dark">
-					<tr>
-					
-						<th class="hideable-column">
-							ID
-						</th>
-						
-					
-						
-						<th >
-						Emri
-						</th>
-	
-					
-					   <th> Mbiemri</th>
-						
-						
-						
-						
-						<th>Fakulteti</th>
-						<th>Departamenti</th>
-						<th>Viti akademik</th>
-						<th>Gjendja</th>
-						<th>Tot auditor</th>
-						<th sec:authorize="hasAnyAuthority('admin_role','pergjdep_role','kurrikula_role')">Actions</th>
-						
-						
-					</tr>								
-				</thead>
-				<tbody>
-					<tr th:each="ngarkese : ${ngarkesat}">
-						<td class="hideable-column" th:text="${ngarkese.id}"></td>
-					
-					
-						<td>[[${ngarkese.user.firstName}]]</td>
-						<td>[[${ngarkese.user.lastName}]]</td>
-					
-						<td>[[${ngarkese.departamenti_ngarkesa.fakulteti.emertimi}]]</td>
-						<td>[[${ngarkese.departamenti_ngarkesa.emertimi}]]</td>
-						<td>[[${ngarkese.vitiakademik}]]</td>
-						
-						<td>[[${ngarkese.status}]]</td>
-						<td>[[${ngarkese.totAuditor}]]</td>
-						
-					<td sec:authorize="hasAnyAuthority('admin_role','pergjdep_role','kurrikula_role')"> 
-					
-						 <a  th:if="${ngarkese.status == 'Krijuar'}" class="fa fa-trash fa-2x icon-red link-delete" th:href="@{'/ngarkesa/delete/' + ${ngarkese.id}}"
-						 th:progID="${user.id}"></a>
-						<a  class="fa fa-edit fa-2x icon-blue" th:href="@{'/ngarkesa/edit/' + ${ngarkese.id}}" ></a>
-					
-						
-						</td>
-					
-						
-					</tr>
-				</tbody>
-			</table>
         
-        	<div  class="modal fade text-center" id="confirmModal">
+     	<div class="x_content">
+     	
+									<br />
+									<form id="demo-form2" method="post" th:action="@{/ngarkesejashteauditor/save}" class="form-horizontal form-label-left" th:object="${ngarkesejashteauditorit}">
+
+										
+		    	<input type="hidden" th:field="*{id}" />
+		    	
+		    	<input type="hidden" th:field="*{ngarkesejashteauditor}" />
+		    	
+		    
+		    	
+
+	<div class="item form-group">
+										<div class="col-md-1 col-sm-1 ">
+										</div>
+										
+										<label for="programi" class="col-form-label col-md-2 col-sm-2 label-align"> anetra doktorate<span class="required">*</span> </label>
+											<div class="col-md-2 col-sm-2 ">
+								<input class="form-control" required="required" type="text"  
+												th:field="*{anetardoktorate}" >
+												</div>
+										
+											
+										</div>
+										
+	
+			
+			
+			<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="lenda">diplome cikli 1 <span class="required">*</span>
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="text"  required="required" class="form-control" th:field="*{diplomecikli1}">
+											</div>
+										</div>
+										<div class="item form-group">
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="cikli">diplome cikli 2
+											</label>
+											<div class="col-md-6 col-sm-6 ">
+												<input type="text"  class="form-control"  th:field="*{diplomecikli2}">
+											</div>
+										</div>
+										
+									
+											<label for="middle-name" class="col-form-label col-md-1 col-sm-1 label-align">diplome cikli 3 <span class="required">*</span></label>
+											<div class="col-md-2 col-sm-2 ">
+												<input class="form-control" required="required" type="text"   th:field="*{diplomecikli3}">
+												</div>
+												<label for="seminare" class="col-form-label col-md-2 col-sm-2 label-align">Kryetar doktorate <span class="required">*</span></label>
+											<div class="col-md-2 col-sm-2 ">
+											<input class="form-control" required="required" type="text"   th:field="*{kryetardoktorate}">
+											
+											
+										</div>
+											<label for="grseminare" class="col-form-label col-md-2 col-sm-2 label-align">oponence <span class="required">*</span></label>
+											<div class="col-md-2 col-sm-2 ">
+											<input class="form-control" required="required" type="text"   th:field="*{oponencedoktorate}">
+											
+											
+										</div>
+											<label for="laboratore" class="col-form-label col-md-2 col-sm-2 label-align">teze doktorate <span class="required">*</span></label>
+											<div class="col-md-2 col-sm-2 ">
+											<input class="form-control" required="required" type="text"   th:field="*{tezedoktorate}">
+											
+											
+										</div>
+										
+											
+											
+											
+										
+											
+											
+										
+										
+										
+										
+										
+									
+
+									
+										
+										
+
+									
+										
+										
+			
+
+
+				
+
+				
+				
+										
+	<div class="text-center">
+					<input type="submit" value="Save" class="btn btn-primary m-3" /> 
+					<input type="button" value="Cancel" class="btn btn-secondary" th:depID="*{ngarkesejashteauditor.id}"
+						id="buttonCancel" />
+				</div>								
+									
+									
+									
+									
+
+									</form>
+									</div>
+								
+
+        </div>
+        
+        		<div th:fragment="modal_dialog" class="modal fade text-center" id="modalDialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-			
-					<h4 class="modal-title">Delete Confirmation</h4>
-					
+					<h4 class="modal-title" id="modalTitle">Warning</h4>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 
 				<div class="modal-body">
-					<h2><span id="confirmText"></span></h2>
+					<span id="modalBody"></span>
 				</div>
 
 				<div class="modal-footer">
-					<a class="btn btn-success" href="" id="yesButton">Yes</a>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
-	</div>	
-
-        </div>
+	</div>
         <!-- /page content -->
 
         <!-- footer content -->
@@ -353,31 +452,51 @@
     <!-- bootstrap-daterangepicker -->
     <script type="text/javascript" th:src="@{/vendors/moment/min/moment.min.js}" ></script>
     <script type="text/javascript" th:src="@{/vendors/bootstrap-daterangepicker/daterangepicker.js}" ></script>
-
-    <!-- Custom Theme Scripts -->
     <script type="text/javascript" th:src="@{/build/js/custom.min.js}" ></script>
-    			<script type="text/javascript">
-
-	moduleURL =  "[[@{/fakultetet/}]]" ;
-
+    
+  	<script type="text/javascript">
+	
 	$(document).ready(function() {
-		$(".link-delete").on("click", function(e) {
-			e.preventDefault();
-			//showDeleteConfirmModal($(this), 'user');
-			link=$(this);
-			progId=link.attr("progID");
-			$("#yesButton").attr("href", link.attr("href"));
-			$("#confirmText").text("Jeni te sigurte per fshirjen e " + progId);
-			$("#confirmModal").modal();
+		$("#buttonCancel").on("click", function() {
+			//console.log(moduleURL);
+			
+			depID=$("#buttonCancel").attr("depID");
+			
+			
+			window.location =  "[[@{/ngarkesa/edit/}]]" + depID + "#step-2" ;
+			
+		
 		});
+		
+		
+
+
 	});
 	
-	function clearFilter() {
-		window.location = moduleURL;	
-	}
-	
-</script>
+
+    function isNumberKey(txt, evt) {
+      var charCode = (evt.which) ? evt.which : evt.keyCode;
+      if (charCode == 46) {
+        //Check if the text already contains the . character
+        if (txt.value.indexOf('.') === -1) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        if (charCode > 31 &&
+          (charCode < 48 || charCode > 57))
+          return false;
+      }
+      return true;
+    }
+ 
+			
+	</script>
+
+    <!-- Custom Theme Scripts -->
     
+ 
 	
   </body>
 </html>

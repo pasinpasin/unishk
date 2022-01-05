@@ -131,7 +131,7 @@ public class NgarkesaController {
 							 Ngarkesa  ngark = (Ngarkesa) arrayList.get(i);
 							 
 							 
-							 if  ( ngark.getStatus()=="Perfunduar")
+							 if  ( ngark.getStatus().equalsIgnoreCase("Perfunduar"))
 							   
 									
 									 { 
@@ -200,6 +200,34 @@ model.addAttribute("user",user);
 		
 			
 		}
+	
+	@GetMapping("/ngarkesa/status/{id}")
+	public String NdryshoStatus(@PathVariable(name="id") Integer id,
+			RedirectAttributes redirectAttributes)
+	{
+		String message=null;
+		
+		
+		if (ngarkesaService.GetById(id).getStatus().equalsIgnoreCase("Krijuar"))
+		{
+			message="Statusi i ngakeses ndryshoi ne Perfunduar";
+			
+			ngarkesaService.updateStatus(id, "Perfunduar");
+		}
+		else
+		{
+			ngarkesaService.updateStatus(id, "Krijuar");
+			 message="Statusi i ngakeses ndryshoi ne Krijuar";
+			
+		}
+
+			
+		
+		redirectAttributes.addFlashAttribute("message",message);
+		System.out.println(message);
+		return "redirect:/ngarkesa/edit/" + id;
+		
+	}
 
 
 	

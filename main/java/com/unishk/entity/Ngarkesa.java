@@ -58,8 +58,9 @@ public class Ngarkesa {
 	@Column(length=50, nullable=false)
 	 private String status="Krijuar";
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "jashteauditor_id", referencedColumnName = "id")
+	
+	
+	@OneToOne(mappedBy = "ngarkesejashteauditor",fetch = FetchType.LAZY,cascade=CascadeType.MERGE)
     private NgarkeseJashteAuditor ngarkesejashteauditor;
 	
 	

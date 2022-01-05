@@ -1,10 +1,12 @@
 package com.unishk.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,8 +21,10 @@ public class NgarkeseJashteAuditor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToOne(mappedBy = "ngarkesejashteauditor")
-    private Ngarkesa ngarkese;
+	
+	@JoinColumn(name = "ngarkesa_id",nullable=false)
+	@OneToOne
+    private Ngarkesa ngarkesejashteauditor;
 	
 	@Column(length=50, nullable=false)
 	 private String diplomecikli1="0";
@@ -60,12 +64,13 @@ public class NgarkeseJashteAuditor {
 		this.id = id;
 	}
 
-	public Ngarkesa getNgarkese() {
-		return ngarkese;
+
+	public Ngarkesa getNgarkesejashteauditor() {
+		return ngarkesejashteauditor;
 	}
 
-	public void setNgarkese(Ngarkesa ngarkese) {
-		this.ngarkese = ngarkese;
+	public void setNgarkesejashteauditor(Ngarkesa ngarkesejashteauditor) {
+		this.ngarkesejashteauditor = ngarkesejashteauditor;
 	}
 
 	public String getDiplomecikli1() {

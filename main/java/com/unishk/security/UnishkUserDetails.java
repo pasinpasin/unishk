@@ -18,6 +18,10 @@ public class UnishkUserDetails implements UserDetails {
 	
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private User user;
 
 	public UnishkUserDetails(User user) {
@@ -103,6 +107,11 @@ public class UnishkUserDetails implements UserDetails {
 	public Integer getUserId()
 	{
 		return this.user.getId();
+	}
+	
+	public boolean hasRole(String roleName)
+	{
+		return user.hasRole(roleName);
 	}
 
 }

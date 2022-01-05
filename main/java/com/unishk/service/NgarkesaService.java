@@ -58,6 +58,14 @@ public class NgarkesaService {
 		 return  (List<NgarkesePermbajtja>) repo2.findNgarkesePermbajtjaById(id);
 	 }
 	 
+	 public void updateStatus(Integer id, String newstatus) 
+	 {
+		 
+		repo.setNgarkesaStatus(id, newstatus);
+		 
+	 }
+	 
+	 
 	
 	 
 	 

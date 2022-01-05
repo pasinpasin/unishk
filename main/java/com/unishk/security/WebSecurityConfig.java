@@ -34,7 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 	
 		http.authorizeRequests()
-		//.antMatchers("/**").hasIpAddress("127.0.0.1")
+		.antMatchers("/users/**").hasAuthority("admin_role")
+		//.antMatchers("/**").access("hasIpAddress('127.0.0.1') or hasIpAddress('::1') or isAuthenticated()")
 		.anyRequest().authenticated()
 		.and()
 		.formLogin()

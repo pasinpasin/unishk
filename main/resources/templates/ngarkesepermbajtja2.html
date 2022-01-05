@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
@@ -9,30 +10,19 @@
 
     <title>Gentelella Alela! | </title>
 
-   <!-- Bootstrap -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap/dist/css/bootstrap.min.css}"  />
-    
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" th:href="@{/vendors/font-awesome/css/font-awesome.min.css}"  />
     <!-- NProgress -->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendors/nprogress/nprogress.css}" />
-    <!-- iCheck -->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendors/iCheck/skins/flat/green.css}" />
-	
-    <!-- bootstrap-progressbar -->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css}" />
-    <!-- JQVMap -->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendors/jqvmap/dist/jqvmap.min.css}" >
-    <!-- bootstrap-daterangepicker -->
-    <link rel="stylesheet" type="text/css" th:href="@{/vendors/bootstrap-daterangepicker/daterangepicker.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/vendors/nprogress/nprogress.css}"  />
 
     <!-- Custom Theme Style -->
-    <link rel="stylesheet" type="text/css" th:href="@{/build/css/custom.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/build/css/custom.min.css}"  />
     <link rel="stylesheet" type="text/css" th:href="@{/styles.css}"/>
   </head>
 
-  <body class="nav-md">
+  <body th:if="${ngarkese != null}" class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -278,19 +268,18 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Form Wizards</h3>
+       
+		
+		<nav aria-label="breadcrumb">
+  <ol class="breadcrumb breadcrumb-5 bg-info ">
+    <li class="breadcrumb-item"><a class="text-white" th:href="@{'/'}">Home</a ></li>
+    <li class="breadcrumb-item"><a  class="text-white" th:href="@{'/ngarkesat'}">Ngarkesat</a></li>
+    <li class="breadcrumb-item active text-white" aria-current="page">Ngarkesa e pedagogut [[${ngarkese.user.firstName + ngarkese.user.lastName }  ]]</li>
+  </ol>
+</nav>
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5  form-group row pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for...">
-                    <span class="input-group-btn">
-                              <button class="btn btn-secondary" type="button">Go!</button>
-                          </span>
-                  </div>
-                </div>
-              </div>
+          
             </div>
             <div class="clearfix"></div>
 
@@ -298,25 +287,7 @@
 
               <div class="col-md-12 col-sm-12 ">
                 <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Form Wizards <small>Sessions</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
+           
                   <div class="x_content">
 
 
@@ -328,8 +299,8 @@
                           <a href="#step-1">
                             <span class="step_no">1</span>
                             <span class="step_descr">
-                                              Step 1<br />
-                                              <small>Step 1 description</small>
+                                              Hapi 1<br />
+                                              <small>Ngarkesa ne auditor</small>
                                           </span>
                           </a>
                         </li>
@@ -337,8 +308,8 @@
                           <a href="#step-2">
                             <span class="step_no">2</span>
                             <span class="step_descr">
-                                              Step 2<br />
-                                              <small>Step 2 description</small>
+                                              Hapi 2 <br />
+                                              <small>Ngarkesa jashte auditorit</small>
                                           </span>
                           </a>
                         </li>
@@ -346,104 +317,233 @@
                           <a href="#step-3">
                             <span class="step_no">3</span>
                             <span class="step_descr">
-                                              Step 3<br />
-                                              <small>Step 3 description</small>
+                                              Hapi 3 <br />
+                                              <small>Totalet</small>
                                           </span>
                           </a>
                         </li>
-                        <li>
-                          <a href="#step-4">
-                            <span class="step_no">4</span>
-                            <span class="step_descr">
-                                              Step 4<br />
-                                              <small>Step 4 description</small>
-                                          </span>
-                          </a>
-                        </li>
+                     
                       </ul>
                       <div id="step-1">
-                        <form class="form-horizontal form-label-left">
+                                        <div>
+                      <a th:if="${ngarkese.status == 'Krijuar'}" class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/ngarkesepermbajtja/new/'+ ${ngarkese.id}}">Shto rresht</a>
+	          <div class="row"> 
+	          
+	          
+	          </div>
+                       <div class="table-responsive fixed-table-body">	
+                       
+    
 
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">First Name <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                              <input type="text" id="first-name" required="required" class="form-control  ">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Last Name <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                              <input type="text" id="last-name" name="last-name" required="required" class="form-control ">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
-                            <div class="col-md-6 col-sm-6 ">
-                              <input id="middle-name" class="form-control col" type="text" name="middle-name">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
-                            <div class="col-md-6 col-sm-6 ">
-                              <div id="gender" class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
-                                  <input type="radio" name="gender" value="male" class="join-btn"> &nbsp; Male &nbsp;
-                                </label>
-                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
-                                  <input type="radio" name="gender" value="female" class="join-btn"> Female
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                              <input id="birthday" class="date-picker form-control" required="required" type="text">
-                            </div>
-                          </div>
 
-                        </form>
+ 	
+<table class="table table-striped jambo_table table-responsive-xl" id="example">
 
+  <thead class="thead-blue">
+
+    <tr class="headings">
+
+      <th>#</th>
+
+      <th>Programi</th>
+
+      <th>Lenda</th>
+
+      <th >Cikli</th>
+      <th>Leksione</th>
+      <th>Seminare</th>
+      <th>Gr Seminare</th>
+      <th>Laboratore</th>
+      <th>Grup Laboratore</th>
+      <th>Praktika</th>
+      <th>Koef Praktike</th>
+      
+        <th>Shuma</th>
+     
+      
+  
+
+    </tr >
+
+  </thead>
+
+  <tbody>
+
+    <tr th:each="permbajtja : ${permbajtja}">
+    
+						<td class="hideable-column" style="font-size: 18px;" th:text="${permbajtja.id}"></td>
+						
+							<td th:text="${permbajtja.programi}"></td>
+								<td  th:text="${permbajtja.lenda}"  ></td >
+									<td th:text="${permbajtja.cikli}"></td>
+										<td th:text="${permbajtja.leksione}"></td>
+										
+	<td th:text="${permbajtja.seminare}" class="kredit"></td>
+	
+		<td th:text="${permbajtja.grseminare}"></td>
+			<td th:text="${permbajtja.laboratore}"></td>
+				<td th:text="${permbajtja.grlaboratore}"></td>
+					<td th:text="${permbajtja.praktika}"></td>
+						<td th:text="${permbajtja.koef}"></td>
+			<td th:text="${permbajtja.shuma}"></td>
+			
+										
+    </tr>
+    
+  
+   
+    
+    
+
+   
+ 
+
+  </tbody>
+
+</table>
+
+
+
+
+
+
+
+
+</div>
+
+                      </div>
                       </div>
                       <div id="step-2">
-                        <h2 class="StepTitle">Step 2 Content</h2>
-                        <p>
-                          do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                          fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+                                        <div>
+                                       
+                      <a th:if="${permbajtja2 == null && ngarkese.status == 'Krijuar'}" class="btn btn-secondary btn-sm btn-success" role="button" th:href="@{'/ngarkesejashteauditor/new/'+ ${ngarkese.id}}">Shto rresht</a>
+	          <div class="row"> 
+	          
+	         
+	          
+	          
+	          </div>
+                       <div class="table-responsive fixed-table-body">	
+                       
+    
+
+
+ 	
+<table class="table table-striped jambo_table table-responsive-xl" id="example">
+
+  <thead class="thead-blue">
+
+    <tr class="headings">
+
+      <th>#</th>
+
+      <th>Anetar doktorate</th>
+
+      <th>Diplome cikli 1</th>
+
+       <th>Diplome cikli 2</th>
+      <th>Diplome cikli 3</th>
+      <th>Kryetar doktorate</th>
+     <th>Oponence doktorate</th>
+      <th>Teze doktorate</th>
+
+      
+        <th>Shuma</th>
+        <th>Veprimet</th>
+     
+      
+  
+
+    </tr >
+
+  </thead>
+
+  <tbody>
+
+    <tr th:each="permbajtja : ${permbajtja2}">
+    
+						<td class="hideable-column" style="font-size: 18px;" th:text="${permbajtja.id}"></td>
+						
+							<td th:text="${permbajtja.anetardoktorate}"></td>
+								<td  th:text="${permbajtja.diplomecikli1}"  ></td >
+									<td th:text="${permbajtja.diplomecikli2}"></td>
+										<td th:text="${permbajtja.diplomecikli3}"></td>
+										
+	<td th:text="${permbajtja.kryetardoktorate}"></td>
+	
+		<td th:text="${permbajtja.oponencedoktorate}"></td>
+			<td th:text="${permbajtja.tezedoktorate}"></td>
+				
+			<td th:text="${permbajtja.shuma}"></td>
+			
+			<td> 
+					
+						 <a  sec:authorize="hasAnyAuthority('admin_role','pergjdep_role')" th:if="${ngarkese.status == 'Krijuar'}" class="fa fa-trash fa-2x icon-red link-delete" th:href="@{'/ngarkesejashteauditor/delete/' + ${permbajtja.id}}"
+						 th:progID="${permbajtja.id}"></a>
+					
+						<a sec:authorize="hasAnyAuthority('admin_role','pergjdep_role')" th:if="${ngarkese.status == 'Krijuar'}"  class="fa fa-edit fa-2x icon-blue" th:href="@{'/ngarkesejashteauditor/modifiko/'+ ${permbajtja.id}}" ></a >
+					
+						
+						</td>
+			
+										
+    </tr>
+    
+  
+   
+    
+    
+
+   
+ 
+
+  </tbody>
+
+</table>
+
+
+
+
+
+
+
+
+</div>
+
+                      </div>
                       </div>
                       <div id="step-3">
-                        <h2 class="StepTitle">Step 3 Content</h2>
-                        <p>
-                          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                          eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
+                        <h2 class="StepTitle">Totali</h2>
+                     	<div class="form-group col-sm-12">
+					<label class="col-sm-3 col-form-label">Totali ne Auditor:</label>
+					<div class="col-sm-3">
+						<input type="text" disabled class="form-control" th:value="${totAuditor}"/>
+					</div>
+						<label class="col-sm-3 col-form-label">Totlai jashte auditorit</label>
+					<div class="col-sm-3">
+						<input type="text" disabled class="form-control" th:value="${totJashteAuditor}"/>
+					</div>
+						<label class="col-sm-3 col-form-label">Planifikimi</label>
+					<div class="col-sm-3">
+						<input type="text" disabled class="form-control" th:value="${totJashteAuditor + totAuditor}"/>
+						
+					</div>
+					
+				</div>
+			
+				
+				
+				<a sec:authorize="hasAnyAuthority('admin_role','pergjdep_role')" th:if="${ngarkese.status == 'Krijuar'}" class="btn btn-info" 
+			th:href="@{'/ngarkesa/status/' + ${ngarkese.id}}"
+			
+		>Perfundo</a >
+			
+			<a sec:authorize="hasAnyAuthority('admin_role','kurrikula_role')" th:if="${ngarkese.status == 'Perfunduar'}" class="btn btn-info" 
+			th:href="@{'/ngarkesa/status/' + ${ngarkese.id}}"
+			
+			>Kthe per ndryshime</a >
                       </div>
-                      <div id="step-4">
-                        <h2 class="StepTitle">Step 4 Content</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                      </div>
+               
 
                     </div>
                     <!-- End SmartWizard Content -->
@@ -452,134 +552,38 @@
 
 
 
-                    <h2>Example: Vertical Style</h2>
-                    <!-- Tabs -->
-                    <div id="wizard_verticle" class="form_wizard wizard_verticle">
-                      <ul class="list-unstyled wizard_steps">
-                        <li>
-                          <a href="#step-11">
-                            <span class="step_no">1</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#step-22">
-                            <span class="step_no">2</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#step-33">
-                            <span class="step_no">3</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#step-44">
-                            <span class="step_no">4</span>
-                          </a>
-                        </li>
-                      </ul>
-
-                      <div id="step-11">
-                        <h2 class="StepTitle">Step 1 Content</h2>
-                        <form class="form-horizontal form-label-left">
-
-                          <span class="section">Personal Info</span>
-
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">First Name <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6">
-                              <input type="text" id="first-name2" required="required" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Last Name <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6">
-                              <input type="text" id="last-name2" name="last-name" required="required" class="form-control">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Middle Name / Initial</label>
-                            <div class="col-md-6 col-sm-6">
-                              <input id="middle-name2" class="form-control " type="text" name="middle-name">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Gender</label>
-                            <div class="col-md-6 col-sm-6">
-                              <div id="gender2" class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
-                                  <input type="radio" name="gender" value="male" class="join-btn"> &nbsp; Male &nbsp;
-                                </label>
-                                <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-secondary">
-                                  <input type="radio" name="gender" value="female" class="join-btn" checked=""> Female
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Date Of Birth <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6">
-                              <input id="birthday2" class="date-picker form-control" required="required" type="text">
-                            </div>
-                          </div>
-
-                        </form>
-                      </div>
-                      <div id="step-22">
-                        <h2 class="StepTitle">Step 2 Content</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                      </div>
-                      <div id="step-33">
-                        <h2 class="StepTitle">Step 3 Content</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                      </div>
-                      <div id="step-44">
-                        <h2 class="StepTitle">Step 4 Content</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                          in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                      </div>
-                    </div>
+               
                     <!-- End SmartWizard Content -->
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          
+               
+        	<div  class="modal fade text-center" id="confirmModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+			
+					<h4 class="modal-title">Delete Confirmation</h4>
+					
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<div class="modal-body">
+					<h2><span id="confirmText"></span></h2>
+				</div>
+
+				<div class="modal-footer">
+					<a class="btn btn-success" href="" id="yesButton">Yes</a>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+				</div>
+			</div>
+		</div>
+	</div>	
+          
+          
         </div>
         <!-- /page content -->
 
@@ -594,45 +598,39 @@
       </div>
     </div>
 
-      <!-- jQuery -->
-    <script type="text/javascript" th:src="@{/vendors/jquery/dist/jquery.min.js}" ></script>
+    <!-- jQuery -->
+     <script type="text/javascript" th:src="@{/vendors/jquery/dist/jquery.min.js}" ></script>
     <!-- Bootstrap -->
     <script type="text/javascript" th:src="@{/vendors/bootstrap/dist/js/bootstrap.bundle.min.js}" ></script>
-     
     <!-- FastClick -->
-    <script type="text/javascript" th:src="@{/vendors/fastclick/lib/fastclick.js}" ></script>
+     <script type="text/javascript" th:src="@{/vendors/fastclick/lib/fastclick.js}" ></script>
     <!-- NProgress -->
-    <script type="text/javascript" th:src="@{/vendors/nprogress/nprogress.js}" ></script>
-    <!-- Chart.js -->
-    <script type="text/javascript" th:src="@{/vendors/Chart.js/dist/Chart.min.js}" ></script>
-    <!-- gauge.js -->
-    <script type="text/javascript" th:src="@{/vendors/gauge.js/dist/gauge.min.js}" ></script>
-    <!-- bootstrap-progressbar -->
-    <script type="text/javascript" th:src="@{/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js}" ></script>
-    <!-- iCheck -->
-    <script type="text/javascript" th:src="@{/vendors/iCheck/icheck.min.js}" ></script>
-    <!-- Skycons -->
-    <script type="text/javascript" th:src="@{/vendors/skycons/skycons.js}" ></script>
-    <!-- Flot -->
-    <script type="text/javascript" th:src="@{/vendors/Flot/jquery.flot.js}" ></script>
-    <script type="text/javascript" th:src="@{/vendors/Flot/jquery.flot.pie.js}" ></script>
-    <script type="text/javascript" th:src="@{/vendors/Flot/jquery.flot.time.js}" ></script>
-    <script type="text/javascript" th:src="@{/vendors/Flot/jquery.flot.stack.js}" ></script>
-    <script type="text/javascript" th:src="@{/vendors/Flot/jquery.flot.resize.js}" ></script>
-    <!-- Flot plugins -->
-    <script type="text/javascript" th:src="@{/vendors/flot.orderbars/js/jquery.flot.orderBars.js}" ></script>
-    <script type="text/javascript" th:src="@{/vendors/flot-spline/js/jquery.flot.spline.min.js}" ></script>
-    <script type="text/javascript" th:src="@{/vendors/flot.curvedlines/curvedLines.js}" ></script>
-    <!-- DateJS -->
-    <script type="text/javascript" th:src="@{/vendors/DateJS/build/date.js}" ></script>
-    <!-- JQVMap -->
-    <script type="text/javascript" th:src="@{/vendors/jqvmap/dist/jquery.vmap.js}" ></script>
-    <script type="text/javascript" th:src="@{/vendors/jqvmap/dist/maps/jquery.vmap.world.js}" ></script>
-    <script type="text/javascript" th:src="@{/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}" ></script>
-    <!-- bootstrap-daterangepicker -->
-    <script type="text/javascript" th:src="@{/vendors/moment/min/moment.min.js}" ></script>
-    <script type="text/javascript" th:src="@{/vendors/bootstrap-daterangepicker/daterangepicker.js}" ></script>
+     <script type="text/javascript" th:src="@{/vendors/nprogress/nprogress.js}" ></script>
+    <!-- jQuery Smart Wizard -->
+     <script type="text/javascript" th:src="@{/vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js}" ></script>
+    <!-- Custom Theme Scripts -->
+     <script type="text/javascript" th:src="@{/build/js/custom.min.js}" ></script>
+   			<script type="text/javascript">
 
+	moduleURL =  "[[@{/fakultetet/}]]" ;
+
+	$(document).ready(function() {
+		$(".link-delete").on("click", function(e) {
+			e.preventDefault();
+			//showDeleteConfirmModal($(this), 'user');
+			link=$(this);
+			progId=link.attr("progID");
+			$("#yesButton").attr("href", link.attr("href"));
+			$("#confirmText").text("Jeni te sigurte per fshirjen e " + progId);
+			$("#confirmModal").modal();
+		});
+	});
 	
-  </body>
+	function clearFilter() {
+		window.location = moduleURL;	
+	}
+	
+</script>
+	
+  </body >
 </html>
